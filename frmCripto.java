@@ -32,7 +32,7 @@ public class frmCripto extends javax.swing.JFrame {
         int [] vec7=new int[100];
         Bonos [] bons=new Bonos[100];
         
-        public void escribeVector(int [] vec) {
+        public void writeVector(int [] vec) {
         String aux = "Vector: \n";
         for (int i = 0; i < vec.length; i++) {
             aux = aux + vec[i] + "\n";
@@ -42,9 +42,10 @@ public class frmCripto extends javax.swing.JFrame {
     
     public frmCripto() {
         initComponents();
-        setTitle("Mensaje Secreto");
+        setTitle("Secret Message");
         setLocationRelativeTo(null);
-        
+        /* Lock image to illustrate the form
+        **/
         ImageIcon imagen = new ImageIcon("candado.jpeg");
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(
                 lblLogotipo.getWidth(),
@@ -95,23 +96,23 @@ public class frmCripto extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
         );
 
-        Encriptar.setText("Encriptar");
+        Encriptar.setText("Encrypt");
         Encriptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EncriptarActionPerformed(evt);
             }
         });
 
-        btnTextCipher.setText("texto cipher");
+        btnTextCipher.setText("cypher text");
         btnTextCipher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTextCipherActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Mensaje Secreto");
+        jLabel1.setText("Secret Message");
 
-        btnDecriptar.setText("Decriptar");
+        btnDecriptar.setText("Decrypt");
         btnDecriptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDecriptarActionPerformed(evt);
@@ -121,8 +122,10 @@ public class frmCripto extends javax.swing.JFrame {
         txaMensaje.setColumns(20);
         txaMensaje.setRows(5);
         jScrollPane2.setViewportView(txaMensaje);
+        
 
-        jButton1.setText("Ir a manejo de Bonos");
+        /** Possible to ignore, the project conatins a basic bond calculator **/
+        jButton1.setText("Go to bonds management");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
