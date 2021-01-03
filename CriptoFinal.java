@@ -15,7 +15,7 @@ public class CriptoFinal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Encriptar frase=new Encriptar("me encanta el sexo");
+        Encriptar frase=new Encriptar("sample sentence to test the the program");
         int v[]=new int [20];
         int vec[]=new int [20];
         int vec2[]=new int [20];
