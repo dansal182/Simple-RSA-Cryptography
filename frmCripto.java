@@ -32,7 +32,7 @@ public class frmCripto extends javax.swing.JFrame {
         int [] vec7=new int[100];
         Bonos [] bons=new Bonos[100];
         
-        public void writeVector(int [] vec) {
+        public void escribeVector(int [] vec) {
         String aux = "Vector: \n";
         for (int i = 0; i < vec.length; i++) {
             aux = aux + vec[i] + "\n";
@@ -42,17 +42,9 @@ public class frmCripto extends javax.swing.JFrame {
     
     public frmCripto() {
         initComponents();
+        logo();
         setTitle("Secret Message");
         setLocationRelativeTo(null);
-        /* Lock image to illustrate the form
-        **/
-        ImageIcon imagen = new ImageIcon("candado.jpeg");
-        Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(
-                lblLogotipo.getWidth(),
-                lblLogotipo.getHeight(),
-                Image.SCALE_DEFAULT));
-        lblLogotipo.setIcon(icono);
-        
         setBackground(Color.BLACK);
     }
 
@@ -76,6 +68,9 @@ public class frmCripto extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txaMensaje = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jRestButton = new javax.swing.JButton();
+        quitButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,14 +98,14 @@ public class frmCripto extends javax.swing.JFrame {
             }
         });
 
-        btnTextCipher.setText("cypher text");
+        btnTextCipher.setText("ciphertext");
         btnTextCipher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTextCipherActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Secret Message");
+        jLabel1.setText("Write a simple phrase (no symbols, numbers) you wish to encrypt ");
 
         btnDecriptar.setText("Decrypt");
         btnDecriptar.addActionListener(new java.awt.event.ActionListener() {
@@ -122,28 +117,47 @@ public class frmCripto extends javax.swing.JFrame {
         txaMensaje.setColumns(20);
         txaMensaje.setRows(5);
         jScrollPane2.setViewportView(txaMensaje);
-        
 
-        /** Possible to ignore, the project conatins a basic bond calculator **/
-        jButton1.setText("Go to bonds management");
+        jButton1.setText("Go to bond management");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jRestButton.setText("Restart");
+        jRestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRestButtonActionPerformed(evt);
+            }
+        });
+
+        quitButton.setText("Quit program");
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("*200 characters max");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel1))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel2)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -155,7 +169,12 @@ public class frmCripto extends javax.swing.JFrame {
                         .addGap(57, 57, 57))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblLogotipo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45))))
+                        .addGap(45, 45, 45))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRestButton)
+                            .addComponent(quitButton))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +185,9 @@ public class frmCripto extends javax.swing.JFrame {
                 .addComponent(jScrollPane2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addGap(10, 10, 10))
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(lblLogotipo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,23 +197,39 @@ public class frmCripto extends javax.swing.JFrame {
                 .addComponent(btnTextCipher)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDecriptar)
-                .addGap(38, 38, 38)
+                .addGap(3, 3, 3)
+                .addComponent(jRestButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addGap(49, 49, 49))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(quitButton)
+                .addGap(14, 14, 14))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setup(){
+        this.txaMensaje.setText("");
+        this.jTextArea1.setText("");
+    } 
+    
+    private void logo(){
+        ImageIcon imagen = new javax.swing.ImageIcon(getClass().getResource("/textoSecreto/images/candado.png"));
+        lblLogotipo.setIcon(new javax.swing.ImageIcon(imagen.getImage().getScaledInstance(
+                lblLogotipo.getWidth(),
+                lblLogotipo.getHeight(),
+                Image.SCALE_DEFAULT)));
+    }
     private void btnDecriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDecriptarActionPerformed
-       JFrame frame=new JFrame("Texto decriptado.");
+       JFrame frame=new JFrame("Decrypted Text");
        Decriptar mens=new Decriptar(vec2, 17);
        this.vec4=mens.decriptarTexto(vec2);
        this.vec5=mens.claveLetras(vec4);
        this.vec6=mens.claveFinal(vec5);
        JOptionPane.showMessageDialog(frame,
         mens.traducir(vec6),
-        "Su mensaje es",JOptionPane.INFORMATION_MESSAGE);
+        "Your message is: ",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnDecriptarActionPerformed
 
     private void EncriptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncriptarActionPerformed
@@ -211,9 +248,23 @@ public class frmCripto extends javax.swing.JFrame {
             
     }//GEN-LAST:event_btnTextCipherActionPerformed
 
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         new frmEventos().setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jRestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRestButtonActionPerformed
+        JFrame frame = new JFrame("Message cleared");
+        setup();
+        JOptionPane.showMessageDialog(frame, "The phrase has been deleted, you may now enter a new phrase.", "Message clear", 
+                JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jRestButtonActionPerformed
+
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_quitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,11 +305,14 @@ public class frmCripto extends javax.swing.JFrame {
     private javax.swing.JButton btnTextCipher;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jRestButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblLogotipo;
+    private javax.swing.JButton quitButton;
     private javax.swing.JTextArea txaMensaje;
     // End of variables declaration//GEN-END:variables
 }
